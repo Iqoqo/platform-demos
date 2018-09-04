@@ -12,8 +12,8 @@ path = "/Users/tempuser/Downloads/articles/"
 file = path+"articles1.csv"
 df = pd.read_csv(file)
 #print(df)
-#create categorical variables and drop some variables
-#training=pd.get_dummies(df, columns=["id","title", "publication", "author", "date", "year", "month", "url", "content"])
+
+#columns=["id","title", "publication", "author", "date", "year", "month", "url", "content"]
 
 g = df.groupby("publication")
 
@@ -41,5 +41,4 @@ for name in publication_name:
 		ftxt.write(content[item].decode('utf-8').encode('ascii','ignore'))
 		ftxt.close()
 	  
-#print(g.head())
 
