@@ -5,6 +5,12 @@ import glob
 import nltk
 from string import punctuation
 
+#### efrat
+import argparse
+parser = argparse.ArgumentParser(description='run gender...')
+parser.add_argument('-p', metavar='path', required=True,  help='path to job repository: [-p /bla/bla/id]')
+args = parser.parse_args()
+datapth = args.p
 
 tokenizer = nltk.data.load('tokenizers/punkt/english.pickle')
 
@@ -51,8 +57,8 @@ word_counter={sex:0 for sex in sexes}
 word_freq={sex:{} for sex in sexes}
 proper_nouns={}
 
-file_list=glob.glob('singles/*.txt')
-
+#file_list=glob.glob('singles/*.txt')
+file_list=glob.glob(datapath+'/*.txt')
 
 for file_name in file_list:
     #Open the file
