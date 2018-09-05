@@ -40,5 +40,7 @@ for name in publication_name:
 		ftxt.write(content[item].decode('utf-8').encode('ascii','ignore'))
 		ftxt.close()
 	  
-
+	p = subprocess.Popen("python gender.py -p"+path+"singles/"+dirname, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+	out, err = p.communicate()
+	print out,err
 
