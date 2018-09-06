@@ -1,7 +1,6 @@
 
 from __future__ import division
 
-import glob
 import nltk
 from string import punctuation
 import sys
