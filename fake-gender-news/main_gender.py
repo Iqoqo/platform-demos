@@ -4,7 +4,7 @@
 import pandas as pd 
 import sys
 import gender
-path = "/Users/tempuser/Downloads/articles/"
+
 #### Algorithm
 ## 1. Get filename form cmd
 # read file names form arg
@@ -34,7 +34,7 @@ for name in publication_name:
 	
 	content = g.get_group(name)["content"].tolist()
 	num_publications = len(content)
-	ftxt = open(path+"singles/"+name+"_publication_detailes"+".txt","w+")
+	ftxt = open(name+"_publication_detailes"+".txt","w+")
 	ftxt.write("number of publications: "+str(num_publications))
 	ftxt.close()
 
