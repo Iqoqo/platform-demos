@@ -3,8 +3,10 @@
 from __future__ import division
 import pandas as pd 
 import gender
+import os
+import zipfile
 
-#import glob
+import glob
 import nltk
 from string import punctuation
 import sys
@@ -168,8 +170,17 @@ if len(sys.argv) == 2:
 else:
     sys.exit('Error! should have parameter')
 
+#zip = ZipFile(publication_data)
+zip= zipfile.ZipFile(publication_data)
+publication_data_unzip = zip.extractall("publication_data/")
 
-df = pd.read_csv(publication_data)
+
+publication_data_r = glob.glob('publication_data/*.csv')
+
+
+print(publication_data_r)
+
+df = pd.read_csv(publication_data_r[0])
 
 g = df.groupby("publication")
 
