@@ -2,6 +2,7 @@
 
 Usage demos for the IQOQO platform
 
-## Titanic
+## Gender in news
 
-Distributing several logistic regression runs with different parameters using IQOQO, based on the Titanic dataset kaggles by [SarahG](https://www.kaggle.com/sgus1318/titanic-analysis-learning-to-swim-with-python) and [Baligh Mnassri](https://www.kaggle.com/mnassrib/titanic-logistic-regression-with-python/notebook)
+An NLP research of gender appearnces gap in 150,000 publication from 15 different news websites usign the IQOQO distribution framework.
+Code is based on an [article by Neal Caren](http://nbviewer.jupyter.org/gist/nealcaren/5105037) and evaluates [all the news](https://www.kaggle.com/snapcrack/all-the-news) dataset
