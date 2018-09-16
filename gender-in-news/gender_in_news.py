@@ -164,13 +164,11 @@ def gender_check(pandas_content, publication_name):
 ## 5.1 write to file publisher stats (name, #ofpublications) 
 ## 5.2 send content to "gender" (groupby param)
 
-if len(sys.argv) == 2:
-    publication_data = sys.argv[1]
-else:
-    sys.exit('Error! should have parameter')
 
-#zip = ZipFile(publication_data)
-zip= zipfile.ZipFile(publication_data)
+publication_data = glob.glob('*.csv.zip')
+print(publication_data[0], " took as an input zip")
+
+zip= zipfile.ZipFile(publication_data[0])
 publication_data_unzip = zip.extractall("publication_data/")
 
 
@@ -196,4 +194,4 @@ for name in publication_name:
 	ftxt.write("number of publications: "+str(num_publications))
 	ftxt.close()
 
-	gender.gender_check(content, dirname)
+	gender_check(content, dirname)
