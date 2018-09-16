@@ -165,14 +165,7 @@ def gender_check(pandas_content, publication_name):
 ## 5.2 send content to "gender" (groupby param)
 
 
-publication_data = glob.glob('*.csv.zip')
-print(publication_data[0], " took as an input zip")
-
-zip= zipfile.ZipFile(publication_data[0])
-publication_data_unzip = zip.extractall("publication_data/")
-
-
-publication_data_r = glob.glob('publication_data/*.csv')
+publication_data_r = glob.glob('*.csv')
 
 
 print(publication_data_r)
