@@ -2,7 +2,6 @@
 # coding=<utf-8>
 from __future__ import division
 import pandas as pd 
-import gender
 import os
 import zipfile
 
