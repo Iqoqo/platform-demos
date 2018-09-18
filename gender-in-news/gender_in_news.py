@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env python3.6
 # coding=<utf-8>
 from __future__ import division
 import pandas as pd 
@@ -42,7 +42,7 @@ def gender_check(pandas_content, publication_name):
 	        word_lower=word.lower()
 	        try:
 	            proper_nouns[word_lower][case] = proper_nouns[word_lower].get(case,0)+1
-	        except Exception,e:
+	        except Exception:
 	            #This is triggered when the word hasn't been seen yet
 	            proper_nouns[word_lower]= {case:1}
 
@@ -68,7 +68,7 @@ def gender_check(pandas_content, publication_name):
 	for content in content_list:
 	    #Open the file
 	    #text=open(file_name,'rb').read()
-	    text = content.decode('utf-8').encode('ascii','ignore') #efrat
+	    text = content #efrat
 	    
 	    #Split into sentences
 	    sentences=tokenizer.tokenize(text)
@@ -104,39 +104,41 @@ def gender_check(pandas_content, publication_name):
 	male_percent={word:(word_freq['male'].get(word,0) / word_counter['male']) 
 	              / (word_freq['female'].get(word,0) / word_counter['female']+word_freq['male'].get(word,0)/word_counter['male']) for word in common_words}
 
-	filename = publication_name+"_results_summary"
-	f = open(filename, "w") 
-	print >>f,'%.1f%% gendered' % (100*(sentence_counter['male']+sentence_counter['female'])/
-	                           (sentence_counter['male']+sentence_counter['female']+sentence_counter['both']+sentence_counter['none']))+'\n %s sentences about men.' % sentence_counter['male']+'\n %s sentences about women.' % sentence_counter['female']+'\n %.1f sentences about men for each sentence about women.' % (sentence_counter['male']/sentence_counter['female'])
+	filename = publication_name+"_results_summary" 
+	print('%.1f%% gendered' % (100*(sentence_counter['male']+sentence_counter['female'])/
+	                           (sentence_counter['male']+sentence_counter['female']+sentence_counter['both']+sentence_counter['none']))+
+								'\n %s sentences about men.' % sentence_counter['male']+'\n %s sentences about women.' % sentence_counter['female']+
+								'\n %.1f sentences about men for each sentence about women.' % (sentence_counter['male']/sentence_counter['female']), 
+								file = open(filename, "w"))
 	
-	print '%.1f%% gendered' % (100*(sentence_counter['male']+sentence_counter['female'])/
-	                           (sentence_counter['male']+sentence_counter['female']+sentence_counter['both']+sentence_counter['none']))
-	print '%s sentences about men.' % sentence_counter['male']
-	print '%s sentences about women.' % sentence_counter['female']
-	print '%.1f sentences about men for each sentence about women.' % (sentence_counter['male']/sentence_counter['female'])
+	print('%.1f%% gendered' % (100*(sentence_counter['male']+sentence_counter['female'])/
+	                           (sentence_counter['male']+sentence_counter['female']+sentence_counter['both']+sentence_counter['none'])))
+	print('%s sentences about men.' % sentence_counter['male'])
+	print('%s sentences about women.' % sentence_counter['female'])
+	print('%.1f sentences about men for each sentence about women.' % (sentence_counter['male']/sentence_counter['female']))
 
 	header ='Ratio\tMale\tFemale\tWord'
-	print 'Male words'
-	print header
+	print('Male words')
+	print(header)
 	for word in sorted (male_percent,key=male_percent.get,reverse=True)[:50]:
 	    try:
 	        ratio=male_percent[word]/(1-male_percent[word])
 	    except:
 	        ratio=100
-	    print '%.1f\t%02d\t%02d\t%s' % (ratio,word_freq['male'].get(word,0),word_freq['female'].get(word,0),word)
+	    print('%.1f\t%02d\t%02d\t%s' % (ratio,word_freq['male'].get(word,0),word_freq['female'].get(word,0),word))
 
-	print '\n'*2
-	print 'Female words'
-	print header
+	print('\n'*2)
+	print('Female words')
+	print(header)
 	for word in sorted (male_percent,key=male_percent.get,reverse=False)[:50]:
 	    try:
 	        ratio=(1-male_percent[word])/male_percent[word]
 	    except:
 	        ratio=100
-	    print '%.1f\t%01d\t%01d\t%s' % (ratio,word_freq['male'].get(word,0),word_freq['female'].get(word,0),word)
+	    print('%.1f\t%01d\t%01d\t%s' % (ratio,word_freq['male'].get(word,0),word_freq['female'].get(word,0),word))
 
 	outfile_name='gender.tsv'
-	tsv_outfile=open(outfile_name,'wb')
+	tsv_outfile=open(outfile_name,'w')
 	header='percent_male\tmale_count\tfemalecount\tword\n'
 	tsv_outfile.write(header)
 	for word in common_words:
@@ -147,9 +149,9 @@ def gender_check(pandas_content, publication_name):
 	all_words=[w for w in word_freq['none']]+[w for w in word_freq['both']]+[w for w in word_freq['male']]+[w for w in word_freq['female']]
 	all_words={w:(word_freq['male'].get(w,0)+word_freq['female'].get(w,0)+word_freq['both'].get(w,0)+word_freq['none'].get(w,0)) for w in set(all_words)}
 
-	print 'word\tMale\tFemale'
+	print('word\tMale\tFemale')
 	for word in sorted (all_words,key=all_words.get,reverse=True)[:100]:
-	    print '%s\t%.1f%%\t%.1f%%' % (word,100*word_freq['male'].get(word,0)/sentence_counter['male'],100*word_freq['female'].get(word,0)/sentence_counter['female'])
+	    print('%s\t%.1f%%\t%.1f%%' % (word,100*word_freq['male'].get(word,0)/sentence_counter['male'],100*word_freq['female'].get(word,0)/sentence_counter['female']))
 
 
 #path = "/Users/tempuser/Downloads/articles/"
@@ -164,13 +166,13 @@ def gender_check(pandas_content, publication_name):
 ## 5.1 write to file publisher stats (name, #ofpublications) 
 ## 5.2 send content to "gender" (groupby param)
 
+if len(sys.argv) == 2:
+    publication_data = sys.argv[1]
+else:
+    sys.exit('Error! should have parameter')
 
-publication_data_r = glob.glob('*.csv')
 
-
-print(publication_data_r)
-
-df = pd.read_csv(publication_data_r[0])
+df = pd.read_csv(publication_data)
 
 g = df.groupby("publication")
 
