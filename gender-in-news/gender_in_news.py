@@ -108,8 +108,9 @@ def gender_check(pandas_content, publication_name):
 	print('%.1f%% gendered' % (100*(sentence_counter['male']+sentence_counter['female'])/
 	                           (sentence_counter['male']+sentence_counter['female']+sentence_counter['both']+sentence_counter['none']))+
 								'\n %s sentences about men.' % sentence_counter['male']+'\n %s sentences about women.' % sentence_counter['female']+
-								'\n %.1f sentences about men for each sentence about women.' % (sentence_counter['male']/sentence_counter['female']), 
-								file = open(filename, "w"))
+								'\n %.1f sentences about men for each sentence about women.' % (sentence_counter['male']/sentence_counter['female'])+
+								'\n number of sentences about both %s' % sentence_counter['both']+
+								'\n number of sentences about none %s ' % sentence_counter['none'],file = open(filename, "w"))
 	
 	print('%.1f%% gendered' % (100*(sentence_counter['male']+sentence_counter['female'])/
 	                           (sentence_counter['male']+sentence_counter['female']+sentence_counter['both']+sentence_counter['none'])))
