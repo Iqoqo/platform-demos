@@ -173,7 +173,7 @@ else:
     sys.exit('Error! should have parameter')
 
 
-df = pd.read_csv(publication_data, compression='gzip')
+df = pd.read_csv(publication_data, compression='zip')
 
 g = df.groupby("publication")
 
