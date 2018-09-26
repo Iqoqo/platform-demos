@@ -153,7 +153,7 @@ def gender_check(pandas_content, publication_name):
     print('word\tMale\tFemale')
     for word in sorted (all_words,key=all_words.get,reverse=True)[:100]:
         print('%s\t%.1f%%\t%.1f%%' % (word,100*word_freq['male'].get(word,0)/sentence_counter['male'],100*word_freq['female'].get(word,0)/sentence_counter['female']))
-
+ 
 
 #path = "/Users/tempuser/Downloads/articles/"
 #### Algorithm
@@ -173,7 +173,7 @@ else:
     sys.exit('Error! should have parameter')
 
 
-df = pd.read_csv(publication_data)
+df = pd.read_csv(publication_data, compression='gzip')
 
 g = df.groupby("publication")
 
