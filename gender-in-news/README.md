@@ -12,9 +12,9 @@ The data structure at the dataset from Kaggale is as follow:
 
 columns=["id","title", "publication", "author", "date", "year", "month", "url", "content"].
 
-This data is open with pandas structure.
+The data is being opened with pandas structure.
 
-We group by the publication name (meaning the name of the news websit that this article is from) and looking at the content column.
+We group by the publication name (meaning the name of the news website that this article is from) and looking at the content column.
 
 The content column is the article text.
 The analysis then run over each publication for all the articles from it.
