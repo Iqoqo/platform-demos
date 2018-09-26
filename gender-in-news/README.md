@@ -4,8 +4,8 @@
 ## running the demo from iqoqo app
  1. Upload the script gender_in_news.py
  2. Upload the dataset files as input files from: [iqoqo storage](https://iqoqo/s3) or straight from the [Kaggale site](https://www.kaggle.com/snapcrack/all-the-news)
- 3. The only modules that you need to install is nltk, which is a powerful suite for text processing and analysis. For this analysis, we are only using the NLTK function that splits text into sentences. For our case you simply need to upload the file english.pickle as a 'Constants Files' 
-
+ 3. For our case you need to upload the file english.pickle as a 'Constants Files' 
+The only modules that are needed is nltk, which is a powerful suite for text processing and analysis. For this analysis, we are only using the NLTK function that splits text into sentences. 
 
 ## Gender in news
 
