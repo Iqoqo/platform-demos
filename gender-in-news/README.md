@@ -9,21 +9,23 @@ The only modules that are needed is nltk, which is a powerful suite for text pro
 
 ## Preparing the data for the analysis
 The data structure at the dataset from Kaggale is as follow:
-columns=["id","title", "publication", "author", "date", "year", "month", "url", "content"]
+columns=["id","title", "publication", "author", "date", "year", "month", "url", "content"].
+
 This data is open using pandas structure.
 We group by the publication name (meaning the name of the news websit that this article is from) and looking at the content column.
 The content column is the article text.
 The analysis then run over each publication for all the articles from it.
 The results files are as follow:
 For each news website source:
-    a. nameOfPublication_publication_detailes.txt with the number of articles.
-    b. nameOfPublication_results_summary with statistic for example:
+1.  nameOfPublication_publication_detailes.txt with the number of articles.
+2.  nameOfPublication_results_summary with statistic for example:
         25.9% gendered
         2131 sentences about men.
         552 sentences about women.
         3.9 sentences about men for each sentence about women.
         number of sentences about both 153
         number of sentences about none 7519 
+
 In case you need to merge files, the gengered calculation is:
 (100*(sentence_counter['male']+sentence_counter['female'])/
                           (sentence_counter['male']+sentence_counter['female']+sentence_counter['both']+sentence_counter['none']))
