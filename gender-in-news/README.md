@@ -24,6 +24,7 @@ The results files are as follow:
 For each news website source:
 1.  nameOfPublication_publication_detailes.txt with the number of articles.
 2.  nameOfPublication_results_summary with statistic for example:
+        
         25.9% gendered.
 
         2131 sentences about men.
@@ -35,7 +36,7 @@ For each news website source:
         number of sentences about both 153.
 
         number of sentences about none 7519.
-        
+
 
 In case you need to merge files, the gengered calculation is:
 
