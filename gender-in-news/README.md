@@ -3,14 +3,14 @@
 
 ## Running the demo from iqoqo app
  1. Upload the script gender_in_news.py
- 2. Upload the dataset files as input files. You can get them from iqoqo storage [here](https://s3-us-west-2.amazonaws.com/iqoqo.demo/articles1.csv.zip), [here](https://s3-us-west-2.amazonaws.com/iqoqo.demo/articles2.csv.zip) and [here](https://s3-us-west-2.amazonaws.com/iqoqo.demo/articles3.csv.zip) or download from the [Kaggale site](https://www.kaggle.com/snapcrack/all-the-news)
- 3. For our case you need to upload the file english.pickle as a 'Constant File'.
+ 2. Upload the dataset files as 'Input Files'. You can get them from iqoqo storage [here](https://s3-us-west-2.amazonaws.com/iqoqo.demo/articles1.csv.zip), [here](https://s3-us-west-2.amazonaws.com/iqoqo.demo/articles2.csv.zip) and [here](https://s3-us-west-2.amazonaws.com/iqoqo.demo/articles3.csv.zip) or download from the [Kaggle site](https://www.kaggle.com/snapcrack/all-the-news)
+ 3. For our case you have to to upload the file english.pickle as a 'Constant File'.
 The only modules that are needed is nltk, which is a powerful suite for text processing and analysis. For this analysis, we are only using the NLTK function that splits text into sentences. 
 
 ## Preparing the data for the analysis
 The data structure at the dataset from Kaggale is as follow:
 
-columns=["id","title", "publication", "author", "date", "year", "month", "url", "content"].
+columns=["id", "title", "publication", "author", "date", "year", "month", "url", "content"].
 
 The data is being opened with pandas structure.
 
@@ -38,10 +38,10 @@ For each news website source:
         number of sentences about none 7519.
 
 
-In case you need to merge files, the gengered calculation is:
+In case you need to merge files, the gendered calculation is:
 
-(100*(sentence_counter['male']+sentence_counter['female'])/
-                          (sentence_counter['male']+sentence_counter['female']+sentence_counter['both']+sentence_counter['none']))
+`(100*(sentence_counter['male']+sentence_counter['female'])/
+                          (sentence_counter['male']+sentence_counter['female']+sentence_counter['both']+sentence_counter['none']))`
 
 ## Gender in news
 
