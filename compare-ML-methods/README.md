@@ -7,16 +7,24 @@ The script already has the iqoqomp imported and configured the pool usage.
 In order to run the script, you need to have the [iqoqomp](https://github.com/Iqoqo/iqoqomp) configured on your machine and then just open a command line and run the script as any python script.
 
 ## The analysis
-The analysis is comparing 6 ML methods (using the sklearn package).
+The analysis is comparing different ML methods (using the sklearn package).
 
-The models that compared are:
+There are 2 scripts:
 
-modelnames = ["LogReg", "SVM", "DecTree", "KNN", "LinDisc", "GaussianNB"]
+1. Comparing 6 methods:
+
+   modelnames = ["LogReg", "SVM", "DecTree", "KNN", "LinDisc", "GaussianNB"]
+
+2. Comparing 13 methods:
+   
+   modelnames = ["LogReg", "SVM", "DecTree", "KNN", "LinDisc", "GaussianNB",
+              "MLP", "GaussianPC", "RandomForest", "AdaBoost", "QuadraticDisc",
+              "SVClinear", "SVCgamma"]
 
 You can see the original script in the following articale:
 https://pythondata.com/
 
-You can run this script using iqoqomp or localy:
+## You can run this script using iqoqomp or localy:
 
 1.For a local run,comment in the following line:
 
@@ -37,6 +45,7 @@ The demo data is stored in the following location:
 3. For a data file of 50000 lines: https://s3-us-west-2.amazonaws.com/iqoqo.temp/demo/all_train_30000.csv
 4. For a data file of 7 million lines (5GB file): https://s3-us-west-2.amazonaws.com/iqoqo.temp/demo/all_train.csv
 
+
 ## Statistic for 6 tasks:
 
 #lines |local mp(sec) | iqoqmp(sec) |
@@ -44,3 +53,11 @@ The demo data is stored in the following location:
 10000	 | 30 | 30 | 
 30000 | 260 | 180 |
 50000 | 960 | 840 |
+
+## Statistic for 13 tasks:
+
+#lines |local mp(sec) | iqoqmp(sec) |
+--- | --- | --- |
+10000	 | 1875 | 800 | 
+
+
