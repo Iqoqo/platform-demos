@@ -31,13 +31,10 @@ The demo data is stored in the following location:
 2. For a data file of 50000 lines: https://s3-us-west-2.amazonaws.com/iqoqo.temp/demo/all_train_50000.csv
 3. For a data file of 7 million lines (5GB file): https://s3-us-west-2.amazonaws.com/iqoqo.temp/demo/all_train.csv
 
-statistic for 6 tasks:
+## Statistic for 6 tasks:
 
-#lines	local mp(sec)	iqoqmp(sec)
-
-10000	   30	          30
-
-30000	   260	          180
-
-50000	   960	          840
-
+#lines |local mp(sec) | iqoqmp(sec) |
+--- | --- | --- |
+10000	 | 30 | 30 | 
+30000 | 260 | 180 |
+50000 | 960 | 840 |
