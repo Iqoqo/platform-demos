@@ -3,12 +3,16 @@
 
 ## Running the demo using iqoqomp
 The script already has the iqoqomp imported and configured the pool usage.
+
 In order to run the script, you need to have the [iqoqomp](https://github.com/Iqoqo/iqoqomp) configured on your machine and then just open a command line and run the script as any python script.
 
 ## The analysis
 The analysis is comparing 6 ML methods (using the sklearn package).
+
 The models that compared are:
+
 modelnames = ["LogReg", "SVM", "DecTree", "KNN", "LinDisc", "GaussianNB"]
+
 You can see the original script in the following articale:
 https://pythondata.com/
 
@@ -28,8 +32,12 @@ The demo data is stored in the following location:
 3. For a data file of 7 million lines (5GB file): https://s3-us-west-2.amazonaws.com/iqoqo.temp/demo/all_train.csv
 
 statistic for 6 tasks:
+
 #lines	local mp(sec)	iqoqmp(sec)
+
 10000	   30	          30
+
 30000	   260	          180
+
 50000	   960	          840
 
