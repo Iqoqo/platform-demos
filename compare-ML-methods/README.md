@@ -26,13 +26,13 @@ https://pythondata.com/
 
 ## You can run this script using iqoqomp or localy:
 
-1.For a local run,comment in the following line:
+1. For a local run,comment in the following line:
 
    from iqoqomp import Pool
 
 2. For iqoqomp comment in the following line:
 
-  from multiprocessing import Pool
+   from multiprocessing import Pool
 
 You also have the possibility to run it in linear mode, for that you just need to comment in the linear() function.
 
