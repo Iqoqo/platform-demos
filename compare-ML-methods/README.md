@@ -7,7 +7,7 @@ The script already has the iqoqomp imported and configured the pool usage.
 In order to run the script, you need to have the [iqoqomp](https://github.com/Iqoqo/iqoqomp) configured on your machine and then just open a command line and run the script as any python script.
 
 ## The analysis
-The analysis is comparing different ML methods (using the sklearn package).
+The analysis is comparing different Machine learning methods (using the sklearn package).
 
 There are 2 scripts:
 
