@@ -15,12 +15,12 @@ There are 2 scripts:
 
    modelnames = ["LogReg", "SVM", "DecTree", "KNN", "LinDisc", "GaussianNB"]
 
-2. Comparing 13 methods:
+2. Comparing 18 methods:
    
-   modelnames = ["LogReg", "SVM", "DecTree", "KNN", "LinDisc", "GaussianNB",
+  modelnames = ["LogReg", "SVM", "DecTree", "KNN", "LinDisc", "GaussianNB",
               "MLP", "GaussianPC", "RandomForest", "AdaBoost", "QuadraticDisc",
-              "SVClinear", "SVCgamma"]
-
+              "SVClinear", "SVCgamma", "KNN3", "GaussianRBF", "DecTreeDepth", "RandomForestDepth", "MLPalpha"]
+              
 You can see the original script in the following articale:
 https://pythondata.com/
 
@@ -39,7 +39,7 @@ You also have the possibility to run it in linear mode, for that you just need t
 
 ## The Data
 
-To have a more significant comparing the data was replaced with the following data: https://archive.ics.uci.edu/ml/datasets/Wilt
+To have a more significant comparing the original data from the articale was replaced with the following data: https://archive.ics.uci.edu/ml/datasets/Wilt
 The demo data is stored in the following location:
 1. For a data file of 10000 lines: https://s3-us-west-2.amazonaws.com/iqoqo.temp/demo/all_train_10000.csv
 2. For a data file of 50000 lines: https://s3-us-west-2.amazonaws.com/iqoqo.temp/demo/all_train_50000.csv
@@ -55,10 +55,10 @@ The demo data is stored in the following location:
 30000 | 260 | 180 |
 50000 | 960 | 840 |
 
-## Statistic for 13 tasks:
+
+## Statistic for 18 tasks:
 
 #lines |local mp(sec) | iqoqmp(sec) |
 --- | --- | --- |
-10000	 | 1875 | 800 | 
-
+10000	 | 1300 | 720 | 
 
