@@ -39,7 +39,7 @@ You also have the possibility to run it in linear mode, for that you just need t
 
 ## The Data
 
-To have a more significant comparing the original data from the articale was replaced with the following data: https://archive.ics.uci.edu/ml/datasets/Wilt
+To have a more significant comparing the original data from the articale was replaced with the following data: http://archive.ics.uci.edu/ml/datasets/hepmass
 The demo data is stored in the following location:
 1. For a data file of 10000 lines: https://s3-us-west-2.amazonaws.com/iqoqo.temp/demo/all_train_10000.csv
 2. For a data file of 50000 lines: https://s3-us-west-2.amazonaws.com/iqoqo.temp/demo/all_train_50000.csv
