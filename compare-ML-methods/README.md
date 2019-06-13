@@ -1,4 +1,4 @@
-# compare_mlmethods.py usage
+# Usage
 
 
 ## Running the demo using iqoqomp
@@ -21,10 +21,10 @@ There are 2 scripts:
               "MLP", "GaussianPC", "RandomForest", "AdaBoost", "QuadraticDisc",
               "SVClinear", "SVCgamma", "KNN3", "GaussianRBF", "DecTreeDepth", "RandomForestDepth", "MLPalpha"]
               
-You can see the original script in the following articale:
+You can see the original script in the following article:
 https://pythondata.com/
 
-## You can run this script using iqoqomp or localy:
+## You can run this script eiher using iqoqomp or localy:
 
 1. For a local run,comment in the following line:
 
