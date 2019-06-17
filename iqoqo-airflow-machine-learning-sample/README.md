@@ -16,7 +16,7 @@ The flow consists of -
 
 * Extract the images' features into compatible .csv files). 
 
-* build a model.
+* build a model that would be able to later classify unknown input as food or not.
 
 * Feeding new "unknown" input images to the built model in order to sort the input into one of the classes (food or not food).
 
