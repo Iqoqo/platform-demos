@@ -23,17 +23,20 @@ The flow consists of -
 Running the script via airflow without utilizing IQOQO takes ~40 minutes on a strong local machine.
 
 For simplicity's sake, we've chosen to partially integrate IQOQO into the above mentioned flow.
+It is available in the `iqoqo_bash_operator.py` file.
 
 The new flow will look like this:
 
---> * Downloading an existing set of already classified images (food or not food images)
+--> * Downloading an existing set of already classified images (food or not food images) (`build_dataset.py`)
 +
---> * Resizing the images. 
+--> * Resizing the images. (`build_dataset.py`)
+
+--> * Extract the images' features into compatible .csv files). (`extract_features.py`)
 
 So these stages will be performed simultanously by a few IQOQO agents.
 
-* Running them through a model (extracting their features into compatible .csv files).
+* Running them through a model (extracting their features into compatible .csv files). (`train.py`)
 
---> * Feeding new "unknown" input images to the built model in order to sort the input into one of the classes (food or not food).
+--> * Feeding new "unknown" input images to the built model in order to sort the input into one of the classes (food or not food). (`predict.py`)
 
 Naturally, each agent will report its results to a different text file.
