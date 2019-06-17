@@ -1,21 +1,39 @@
-# platform-demos
+# iqoqo-airflow-machine-learning-sample
 
-Usage demos for the IQOQO platform
+Usage demos for integrating IQOQO platform into an Airflow installation
 
-## Gender in news
+## Image classification 
 
-An NLP research of gender appearnces gap in 150,000 publication from 15 different news websites usign the IQOQO distribution framework.
-Code is based on an [article by Neal Caren](http://nbviewer.jupyter.org/gist/nealcaren/5105037) and evaluates [all the news](https://www.kaggle.com/snapcrack/all-the-news) dataset
+The existing airflow code assumes a simple machine learning alghorithm.
+
+Given an image, the algorithm will, in a large probabily, classify it as "food" or "not food".
+
+The flow consists of -
+
+* Downloading an existing set of already classified images (food or not food images).
+
+* Resizing the images.
+
+* Running them through a model (extracting their features into compatible .csv files).
+
+* Feeding new "unknown" input images to the built model in order to sort the input into one of the classes (food or not food).
 
 ## Compare Machine learning methods
 
-An analysis comparing different Machine learning methods (using the sklearn package).
-You can find the original script in the following article: https://pythondata.com/.
+Running the script via airflow without utilizing IQOQO takes ~40 minutes on a strong local machine.
 
-The original data from the article is data set contains 416 liver patient records and 167 non liver patient records collected from North East of Andhra Pradesh, India. The “Dataset” column is a class label used to divide groups into liver patient (liver disease) or not (no disease).
+For simplicity's sake, we've chosen to partially integrate IQOQO into the above mentioned flow.
 
-In our script the data was replaced with much larger dataset:
-http://archive.ics.uci.edu/ml/datasets/hepmass
-This data was taken from high-energy physics research.
-The search for exotic particles requires sorting through a large number of collisions to find the events of interest. This data set challenges one to detect a new particle of unknown mass.
-Machine learning is used in high-energy physics experiments to search for the signatures of exotic particles. These signatures are learned from Monte Carlo simulations of the collisions that produce these particles and the resulting decay products. In each of the three data sets here, the goal is to separate particle-producing collisions from a background source.
+The new flow will look like this:
+
+--> * Downloading an existing set of already classified images (food or not food images)
++
+--> * Resizing the images. 
+
+So these stages will be performed simultanously by a few IQOQO agents.
+
+* Running them through a model (extracting their features into compatible .csv files).
+
+--> * Feeding new "unknown" input images to the built model in order to sort the input into one of the classes (food or not food).
+
+Naturally, each agent will report its results to a different text file.
