@@ -14,7 +14,9 @@ The flow consists of -
 
 * Resizing the images.
 
-* Running them through a model (extracting their features into compatible .csv files).
+* Extract the images' features into compatible .csv files). 
+
+* build a model.
 
 * Feeding new "unknown" input images to the built model in order to sort the input into one of the classes (food or not food).
 
@@ -35,7 +37,7 @@ The new flow will look like this:
 
 So these stages will be performed simultanously by a few IQOQO agents.
 
-* Running them through a model (extracting their features into compatible .csv files). (`train.py`)
+* build a model. (`train.py`)
 
 --> * Feeding new "unknown" input images to the built model in order to sort the input into one of the classes (food or not food). (`predict.py`)
 
