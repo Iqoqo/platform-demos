@@ -27,8 +27,8 @@ def analyse(model_name):
     values = data_to_use.values
     Y = values[:,0]
     X = values[:,1:28]
-    
-    
+
+
     print "--- starting "+model_name+" analysis ---"
     model = []
     if(model_name=='LogReg'):       model.append( LogisticRegression() )
@@ -37,10 +37,10 @@ def analyse(model_name):
     elif(model_name=='KNN'):        model.append( KNeighborsClassifier() )
     elif(model_name=='LinDisc'):    model.append( LinearDiscriminantAnalysis() )
     elif(model_name=='GaussianNB'): model.append( GaussianNB() )
-    else: 
-        print "Model name not found: "+model_name
+    else:
+        print( "Model name not found: "+model_name)
         quit()
-    
+
     k_fold_validation = model_selection.KFold(n_splits=10, random_state=random_seed)
     results = model_selection.cross_val_score(model[0], X, Y, cv=k_fold_validation, scoring='accuracy')
     output_message = "%s| Mean=%f STD=%f" % (model_name, results.mean(), results.std())
