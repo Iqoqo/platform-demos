@@ -9,8 +9,8 @@ This script demonstrates the use of group and task signature
 
 The task is defined in prime_finder_task.py
 """
-os.environ['IQOQO_EMAIL'] = 'i@iqoqo.co'
-os.environ['IQOQO_PASSWORD'] = '12345678'
+os.environ['IQOQO_EMAIL'] = 'enter your email here'
+os.environ['IQOQO_PASSWORD'] = 'place your password here'
 
 def find_primes_in_range(start, end):
     step = 100000

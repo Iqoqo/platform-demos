@@ -28,4 +28,12 @@ Later we will show how to run it using the Iqoqo platform and distribute the job
  - Run prime_finder_parallel.py. the tasks will now run on your Iqoqo account. 
  You can check their progress in your account dashboard
  
+ ## Next steps
+ - Unleash the full power of Celery and Iqoqo by running different celery [workflows](https://docs.celeryproject.org/en/latest/userguide/canvas.html) with Iqoqo
+ - Try distributing over different machines to optimize your workflow
+ 
+ ## Limitations
+ - The script must be contained in a single file. Including other modules is not working currently.
+ - Including global modules will work if running in venv only or providing a docker container
+ 
  
