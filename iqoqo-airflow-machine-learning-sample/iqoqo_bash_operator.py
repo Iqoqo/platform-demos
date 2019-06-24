@@ -10,11 +10,11 @@ from airflow.operators.dummy_operator import DummyOperator
 IQOQO_LOGIN_USER = 'username@mail.com'
 IQOQO_LOGIN_PASSWORD = 'password'
 
-def list_files():
+def list_remote_files():
     bucket_name = "iqoqo.airflow.demo"
     prefix      = "Food-5K"
 
-    s3_conn   = client('s3', region_name='us-east-2')  # type: BaseClient  ## again assumes boto.cfg setup, assume AWS S3
+    s3_conn   = client('s3', region_name='us-east-2')  
     s3_result =  s3_conn.list_objects_v2(Bucket=bucket_name, Prefix=prefix,Delimiter = "/Food-5K")
 
     if 'Contents' not in s3_result:
@@ -90,5 +90,5 @@ analyze_unknown_images >> build_model
 
 
 if __name__ == "__main__":
-    remotefileList = list_files()
+    remotefileList = list_remote_files()
     dag.cli()

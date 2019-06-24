@@ -12,22 +12,22 @@ import os
 def build_model(is_test = False):
 
 	def csv_feature_generator(inputPath, bs, numClasses, mode="train"):
-		# open the input file for reading
+		# Open input file for reading
 		f = open(inputPath, "r")
 
-		# loop indefinitely
+		# Loop indefinitely
 		while True:
-			# initialize our batch of data and labels
+			# Initialize our batch of data and labels
 			data = []
 			labels = []
 
-			# keep looping until we reach our batch size
+			# Keep looping until we reach our batch size
 			while len(data) < bs:
-				# attempt to read the next row of the CSV file
+				# Attempt to read the next row of the CSV file
 				row = f.readline()
 
-				# check to see if the row is empty, indicating we have
-				# reached the end of the file
+				# Check to see if the row is empty 
+				# (indicating we have reached the end of the file)
 				if row == "":
 					# reset the file pointer to the beginning of the file
 					f.seek(0)
@@ -82,20 +82,21 @@ def build_model(is_test = False):
 	testGen = csv_feature_generator(testPath, config.BATCH_SIZE,
 		len(config.CLASSES), mode="eval")
 
-	# define our simple neural network
+	# Define simple neural network
 	model = Sequential()
 	model.add(Dense(256, input_shape=(7 * 7 * 2048,), activation="relu"))
 	model.add(Dense(16, activation="relu"))
 	model.add(Dense(len(config.CLASSES), activation="softmax"))
 
-	# compile the model
+	# Compile the model
 	opt = SGD(lr=1e-3, momentum=0.9, decay=1e-3 / 25)
-	model.compile(loss="binary_crossentropy", optimizer=opt,
-		metrics=["accuracy"])
+	model.compile(loss="binary_crossentropy", 
+				  optimizer=opt,
+		       	  metrics=["accuracy"])
 
-	# train the network
+	# Train the network
 	print("[INFO] training simple network...")
-	#in test, we just want to see that this code is runing ok. Don't care about a good model
+	# (in test, we just want to see that this code is runing ok.)
 	if is_test:
 		epochs = 1
 		model_f_name = 'food_model.test.h5'
@@ -110,16 +111,7 @@ def build_model(is_test = False):
 		epochs=epochs)
 	
 	model.save(model_f_name)
-	# make predictions on the testing images, finding the index of the
-	# label with the corresponding largest predicted probability, then
-	# show a nicely formatted classification report
-	print("[INFO] Done training.")
-	# print("[INFO] evaluating network...")
-	# predIdxs = model.predict_generator(testGen,
-	# 	steps=(totalTest //config.BATCH_SIZE) + 1)
-	# predIdxs = np.argmax(predIdxs, axis=1)
-	# print(classification_report(testLabels, predIdxs,
-	# 	target_names=le.classes_))
+	print("[INFO] Done training model.")
 
 def test():
 	build_model(True)
