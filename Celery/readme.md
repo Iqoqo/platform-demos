@@ -33,7 +33,7 @@ Later we will show how to run it using the Iqoqo platform and distribute the job
  - Try distributing over different machines to optimize your workflow
  
  ## Limitations
- - The script must be contained in a single file. Including other modules is not working currently.
+ - The script must be contained in a single file. Including other modules is not working currently
  - Including global modules will work if running in venv only or providing a docker container
  
  
