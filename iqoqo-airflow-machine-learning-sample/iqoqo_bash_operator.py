@@ -7,8 +7,8 @@ from airflow.models import DAG
 from airflow.operators.bash_operator import BashOperator
 from airflow.operators.dummy_operator import DummyOperator
 
-IQOQO_LOGIN_USER = 'username@mail.com'
-IQOQO_LOGIN_PASSWORD = 'password'
+IQOQO_LOGIN_USER = 'zohar.sacks@iqoqo.co';
+IQOQO_LOGIN_PASSWORD = '12345678';
 
 def list_remote_files():
     bucket_name = "iqoqo.airflow.demo"
@@ -61,32 +61,35 @@ iqoqo_login = BashOperator(
     dag=dag,
 )
 
+analyze_unknown_images = BashOperator(
+    task_id='analyze_unknown_images',
+    bash_command='iqoqo add -n '+task_id+' -s predict.py -r -w -t',
+    dag=dag,
+)
+
+analyze_unknown_images >> iqoqo_login
+
 run_this >> iqoqo_login
 
 for i in range(5):
     task_id='extract_features_from_images_' + str(i)
     task = BashOperator(
         task_id=task_id,    
-        bash_command="iqoqo add -n "+task_id + " -s extract_features.py -r -w -t imgs_str_"+str(i),
+        bash_command='iqoqo add -n '+str(task_id)+' -s extract_features.py -r -w -t imgs_str_'+str(i),
         dag=dag,
     )
     task >> run_this
 
 build_model = BashOperator(
     task_id='build_model',
-    bash_command="iqoqo add -n "+task_id + " -s train.py -r -w -t",
+    bash_command='iqoqo add -n '+str(task_id)+' -s train.py -r -w -t',
     dag=dag,
 )
 
 iqoqo_login >> build_model
 
-analyze_unknown_images = BashOperator(
-    task_id='analyze_unknown_images',
-    bash_command="iqoqo add -n "+task_id + " -s predict.py -r -w -t",
-    dag=dag,
-)
 
-analyze_unknown_images >> build_model
+
 
 
 if __name__ == "__main__":
