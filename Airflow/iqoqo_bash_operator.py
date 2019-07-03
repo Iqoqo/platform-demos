@@ -49,7 +49,7 @@ dag = DAG(
     dagrun_timeout=timedelta(minutes=60),
 )
 
-run_this = BashOperator(
+analyze_existing_images = BashOperator(
     task_id='analyze_existing_images',
     bash_command='echo 1',
     dag=dag,
@@ -67,7 +67,15 @@ analyze_unknown_images = BashOperator(
     dag=dag,
 )
 
-run_this >> iqoqo_login
+build_model = BashOperator(
+    task_id="build_model",
+    bash_command="iqoqo add -n 'build_model' -s train.py -r -w -t",
+    dag=dag,
+)
+
+build_model >> iqoqo_login
+
+analyze_existing_images >> iqoqo_login
 
 for i in range(5):
     task_id='extract_features_from_images_' + str(i)
@@ -76,15 +84,9 @@ for i in range(5):
         bash_command='iqoqo add -n '+str(task_id)+' -s extract_features.py -r -w -t imgs_str_'+str(i),
         dag=dag,
     )
-    task >> run_this
+    task >> analyze_existing_images
 
-build_model = BashOperator(
-    task_id='build_model',
-    bash_command='iqoqo add -n '+str(task_id)+' -s train.py -r -w -t',
-    dag=dag,
-)
 
-build_model >> iqoqo_login
 analyze_unknown_images >> build_model
 
 
