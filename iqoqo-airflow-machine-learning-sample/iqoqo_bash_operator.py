@@ -63,11 +63,9 @@ iqoqo_login = BashOperator(
 
 analyze_unknown_images = BashOperator(
     task_id='analyze_unknown_images',
-    bash_command='iqoqo add -n '+task_id+' -s predict.py -r -w -t',
+    bash_command="iqoqo add -n 'analyze_unknown_images' -s predict.py -r -w -t",
     dag=dag,
 )
-
-analyze_unknown_images >> iqoqo_login
 
 run_this >> iqoqo_login
 
@@ -86,7 +84,8 @@ build_model = BashOperator(
     dag=dag,
 )
 
-iqoqo_login >> build_model
+build_model >> iqoqo_login
+analyze_unknown_images >> build_model
 
 
 

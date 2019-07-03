@@ -8,6 +8,13 @@ Usage demos for integrating IQOQO platform into an Airflow DAG.
 - An active, registered IQOQO account (sign up at `https://app.iqoqo.co/signup`)
 - IQOQO's CLI installed (in your bash: `curl https://s3.us-east-2.amazonaws.com/iqoqo.cli/install.sh | sh`)
 
+*****Note: if you're on a Mac, and you receive 
+`ValueError: unknown locale: UTF-8 in Python`
+When running the bash operator, add to your bash:
+
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
+
 ## Image classification 
 
 The existing airflow code assumes a simple machine learning alghorithm.
