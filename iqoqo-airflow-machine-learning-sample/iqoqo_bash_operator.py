@@ -57,7 +57,7 @@ run_this = BashOperator(
 
 iqoqo_login = BashOperator(
     task_id='iqoqo_login',
-    bash_command="iqoqo login -u " + IQOQO_LOGIN_USER + " -p " + IQOQO_LOGIN_PASSWORD,
+    bash_command="iqoqo login -u zohar.sacks@iqoqo.co -p 12345678",
     dag=dag,
 )
 
