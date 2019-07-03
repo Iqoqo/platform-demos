@@ -1,14 +1,16 @@
 # iqoqo-airflow-machine-learning-sample
 
-Usage demos for integrating IQOQO platform into an Airflow DAG 
+Usage demos for integrating IQOQO platform into an Airflow DAG.
 
 ## Pre-requisites
 
-- A previously installed running Airflow environment
+- A running Airflow installation (see https://airflow.apache.org/installation.html)
+- IQOQO's CLI installed (in your bash: `curl https://s3.us-east-2.amazonaws.com/iqoqo.cli/install.sh | sh`)
 
 ## Image classification 
 
 The existing airflow code assumes a simple machine learning alghorithm.
+(Images for this implementation sample are on a public S3 bucket)
 
 Given an image, the algorithm will, using a substancial probability factor, classify it as either "food" or "not food".
 
@@ -47,4 +49,4 @@ So these stages will be performed simultanously by a few IQOQO agents.
 
 --> * Feeding new "unknown" input images to the built model in order to sort the input into one of the classes (food or not food). (`predict.py`)
 
-Naturally, each agent will report its results to a different text file.
+Naturally, each agent working on a different set of images will report its results to a different text file.
