@@ -1,5 +1,6 @@
 from builtins import range
 from datetime import timedelta
+import subprocess
 
 import airflow
 from boto3 import client
@@ -42,6 +43,10 @@ args = {
     'start_date': airflow.utils.dates.days_ago(1),
 }
 
+
+result = subprocess.run(['iqoqo login -u zohar.sacks@iqoqo.co -p 12345678'], stdout=subprocess.PIPE)
+print(result.stdout);
+
 dag = DAG(
     dag_id='iqoqo_bash_operator',
     default_args=args,
@@ -57,7 +62,7 @@ analyze_existing_images = BashOperator(
 
 iqoqo_login = BashOperator(
     task_id='iqoqo_login',
-    bash_command="iqoqo login -u zohar.sacks@iqoqo.co -p 12345678",
+    bash_command="",
     dag=dag,
 )
 
