@@ -9,3 +9,4 @@ def is_prime(n):
 @iqoqo_job # uncomment this to run on iqoqo platform
 def find_primes(start_range, end_range):
     return [n for n in range(start_range, end_range) if is_prime(n)]
+
