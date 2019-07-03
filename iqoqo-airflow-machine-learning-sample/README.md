@@ -4,7 +4,8 @@ Usage demos for integrating IQOQO platform into an Airflow DAG.
 
 ## Pre-requisites
 
-- A running Airflow installation (see https://airflow.apache.org/installation.html)
+- A running Airflow installation (see `https://airflow.apache.org/installation.html`)
+- An active, registered IQOQO account (sign up at `https://app.iqoqo.co/signup`)
 - IQOQO's CLI installed (in your bash: `curl https://s3.us-east-2.amazonaws.com/iqoqo.cli/install.sh | sh`)
 
 ## Image classification 
