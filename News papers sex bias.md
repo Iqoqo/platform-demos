@@ -9,4 +9,4 @@ To make the job run faster we used IQOQO framework to distribute the calculation
 ## Ways to improve
 
 1. Better word vector for gender classification
-1. Larger and more up-t-date data-set of articles.
+1. Larger and more up-to-date articles data-set.

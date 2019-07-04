@@ -1,4 +1,4 @@
-# iqoqo-airflow-machine-learning-sample
+# Airflow
 
 Usage demos for integrating IQOQO platform into an Airflow DAG.
 
@@ -12,8 +12,8 @@ Usage demos for integrating IQOQO platform into an Airflow DAG.
 `ValueError: unknown locale: UTF-8 in Python`
 When running the bash operator, add to your bash:
 
-export LC_ALL=en_US.UTF-8
-export LANG=en_US.UTF-8
+`export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8`
 
 ## Image classification 
 
