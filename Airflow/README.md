@@ -10,7 +10,7 @@ Usage demos for integrating IQOQO platform into an Airflow DAG.
 
 *****Note: if you're on a Mac, and you receive 
 `ValueError: unknown locale: UTF-8 in Python`
-When running the bash operator, add to your bash:
+When running the bash operator, add to your bash both where you run the scheduler and the airflow web server:
 
 `export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8`

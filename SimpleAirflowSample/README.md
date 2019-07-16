@@ -5,7 +5,7 @@ Demo for integrating IQOQO platform into a Airflow installation
 - A running Airflow [installation](https://airflow.apache.org/installation.html) (see `https://airflow.apache.org/installation.html`)
 - An active, registered IQOQO account (sign up at `https://app.iqoqo.co/signup`)
 
-- In your bash:
+- Important! In your bash:
 `export IQOQO_EMAIL=<Your IQOQO Email credentials>`
 `export IQOQO_PASSWORD= <Your IQOQO Password credentials>`
 
