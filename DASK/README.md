@@ -49,6 +49,6 @@ Small demo (dask_delayed.py) using the iqoqo SDK demonstrates the point but
     --> we have to force no dependencies
     --> We have to force non-Dask data structures
 
-This approach has no advantage on simply using iqoqomp and it does not exploit any of the main features of DASK.
+This approach has no advantage over simply using iqoqomp and it does not exploit any of DASK's main features.
 
 The dependencies wont work in this example on ANY (remote) cluster.
