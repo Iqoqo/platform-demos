@@ -45,7 +45,7 @@ when the usual data structures cannot be used, user has some control on the para
 
 Useful for strange data structures and for complex inter-process dependencies.
 
-Small demo (dask_delayed.py) using the iqoqo sdk demonstrates the point but
+Small demo (dask_delayed.py) using the iqoqo SDK demonstrates the point but
     --> we have to force no dependencies
     --> We have to force non-Dask data structures
 
