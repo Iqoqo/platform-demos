@@ -19,7 +19,7 @@ e.g. Dask-YARN handles with clusters but we don’t need this extra layer.
 ## Attempt with “processes”
 
 Naively we could use iqoqomp instead of multiprocessing (see dask_iqoqomp.py for a sample).
-Problem is that DASK has it builtin internally.
+Problem is that DASK has it built-in internally.
 
 Many features are not implemented in iqoqomp.pool(on purpose).
 Using “processes” approach, Dask.compute() is expecting a complete Pool object and it relies on the internal copy of multiprocessing which has much more functionalities.
