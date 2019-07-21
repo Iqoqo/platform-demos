@@ -1,4 +1,4 @@
-# platform-demos
+# Platform-demos
 
 Usage demos for the IQOQO platform
 
@@ -29,3 +29,14 @@ showing which ones are food or not in a high probability factor.
 ## Celery
 A simple example of running a prime number finder in a distributed way using the Celery platform and Iqoqo. The prime finder module splits a range of numbers into sub ranges and runs a prime finder function on them in parallel using Celery. by adding a single line of code the module runs the prime finder function on the sub ranges in parallel using the Iqoqo platform on several machines. This demonstrates the ease, in which users already using Celery to run jobs in parallel, can use the iqoqo platform to run their jobs. 
 
+## DASK
+
+Dask is a library for parallel computing in Python.
+
+Dask is composed of two parts:
+
+    1. Dynamic task scheduling optimized for computation. This is similar to Airflow, Luigi, Celery, or Make, but optimized for interactive computational workloads.
+    2. “Big Data” collections like parallel arrays, dataframes, and lists that extend common interfaces like NumPy, Pandas, or Python iterators to larger-than-memory or distributed environments. These parallel collections run on top of dynamic task schedulers.
+
+Research about the options to integrate iqoqo with DASK was done and the summary is detailed in the DASK directory of platform-demos.
+There is a working example of a simple use case using DASK with iqoqo.
