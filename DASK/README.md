@@ -14,7 +14,7 @@ Transparently handles the distribution to workers
 Over ~80% of the use cases
 #“Distributed” (define a cluster object and pass it to Dask)
 Less than ~20% of the use cases
-e.g. dask-yarn handles with clusters but we don’t need this extra layer.
+e.g. Dask-YARN handles with clusters but we don’t need this extra layer.
 
 ## Attempt with “processes”
 
