@@ -23,7 +23,7 @@ Problem is that DASK has it built-in internally.
 
 Many features are not implemented in iqoqomp.pool (by design).
 Using “processes” approach, Dask.compute() expects a complete Pool object and relies on the internal copy of multiprocessing which has additional substantial functionalities.
-This approach is really single-machine-oriented and many things are hardcoded there for that reason.
+This approach is rather single-machine-oriented and strongly hardcoded there for that reason.
 It could be solved with some adaptations on their side, but this is why they have the “distributed” architecture, so I doubt they will accept any change we may come with.
 
 
