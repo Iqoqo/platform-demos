@@ -38,7 +38,7 @@ If we go that way, we need to write a wrapper that returns the iqoqo “cluster�
 
 Estimate the implementation to require ~4 weeks at least.
 
-## “delayed”
+## “Delayed”
 
 One more very esoteric use case, that strips-off most of Dask advantages.
 when the usual data structures cannot be used, user has some control on the parallelisation.
