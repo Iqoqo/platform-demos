@@ -35,8 +35,11 @@ Dask is a library for parallel computing in Python.
 
 Dask is composed of two parts:
 
-    1. Dynamic task scheduling optimized for computation. This is similar to Airflow, Luigi, Celery, or Make, but optimized for interactive computational workloads.
-    2. “Big Data” collections like parallel arrays, dataframes, and lists that extend common interfaces like NumPy, Pandas, or Python iterators to larger-than-memory or distributed environments. These parallel collections run on top of dynamic task schedulers.
+    1. Dynamic task scheduling optimized for computation. This is similar to Airflow, Luigi, Celery, or Make, 
+    but optimized for interactive computational workloads.
+    2. “Big Data” collections like parallel arrays, dataframes, and lists that extend common interfaces like
+    NumPy, Pandas, or Python iterators to larger-than-memory or distributed environments. 
+    These parallel collections run on top of dynamic task schedulers.
 
 Research about the options to integrate iqoqo with DASK was done and the summary is detailed in the DASK directory of platform-demos.
 There is a working example of a simple use case using DASK with iqoqo.
