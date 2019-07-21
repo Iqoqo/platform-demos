@@ -12,7 +12,7 @@ Transparently handles the distribution to workers
 
 #“processes” (using multiprocessing)
 Over ~80% of the use cases
-#“distributed” (needs to define cluster object and pass it to Dask)
+#“Distributed” (define a cluster object and pass it to Dask)
 Less than ~20% of the use cases
 e.g. dask-yarn handles with clusters but we don’t need this extra layer.
 
