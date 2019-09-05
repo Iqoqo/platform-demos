@@ -34,7 +34,7 @@ There are 2 scripts:
 You can see the original script in the following article:
 https://pythondata.com/
 
-## You can run this script eiher using iqoqomp or localy:
+## You can run this script either using discomp or localy:
 
 1. For a local run,comment in the following line:
 
