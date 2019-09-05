@@ -7,6 +7,7 @@ The script already has the discomp imported and configured the pool usage.
 In order to run the script, you need to have the [discomp](https://github.com/Iqoqo/iqoqomp) configured on your machine and then just open a command line and run the script as any python script.
 
 You should also have Dis.co CLI installed before running the script:
+
 ```
  curl https://s3.us-west-2.amazonaws.com/disco.cli/install.sh | sh
 ```
