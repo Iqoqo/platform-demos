@@ -1,10 +1,19 @@
 # Usage
 
 
-## Running the demo using iqoqomp
-The script already has the iqoqomp imported and configured the pool usage.
+## Running the demo using discomp
+The script already has the discomp imported and configured the pool usage.
 
-In order to run the script, you need to have the [iqoqomp](https://github.com/Iqoqo/iqoqomp) configured on your machine and then just open a command line and run the script as any python script.
+In order to run the script, you need to have the [discomp](https://github.com/Iqoqo/iqoqomp) configured on your machine and then just open a command line and run the script as any python script.
+
+You should also have Dis.co CLI installed before running the script:
+```
+ curl https://s3.us-west-2.amazonaws.com/disco.cli/install.sh | sh
+```
+
+The recommended method is to run the script inside python virtual environment:
+
+https://packaging.python.org/guides/installing-using-pip-and-virtual-environments/
 
 ## The analysis
 The analysis is comparing different Machine learning methods (using the sklearn package).
@@ -30,9 +39,9 @@ https://pythondata.com/
 
     from multiprocessing import Pool
 
-2. For iqoqomp comment in the following line:
+2. For discomp comment in the following line:
    
-   from iqoqomp import Pool
+   from discomp import Pool
   
 
 You also have the possibility to run it in linear mode, for that you just need to comment in the linear() function.

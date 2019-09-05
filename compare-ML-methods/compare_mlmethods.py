@@ -29,7 +29,7 @@ def analyse(model_name):
     X = values[:,1:28]
 
 
-    print "--- starting "+model_name+" analysis ---"
+    print ("--- starting "+model_name+" analysis ---")
     model = []
     if(model_name=='LogReg'):       model.append( LogisticRegression() )
     elif(model_name=='SVM'):        model.append( SVC() )
@@ -45,7 +45,7 @@ def analyse(model_name):
     results = model_selection.cross_val_score(model[0], X, Y, cv=k_fold_validation, scoring='accuracy')
     output_message = "%s| Mean=%f STD=%f" % (model_name, results.mean(), results.std())
     print(output_message)
-    print "--- done "+model_name+" analysis ---"
+    print ("--- done "+model_name+" analysis ---")
     return model_name, results
 
 
@@ -66,20 +66,21 @@ def linear(imodel=-1):
 # linear()
 
 ###########################################################
-#################IQOQOmp################################## 
+#################DISCOmp################################## 
 ##########################################################
-
 import os
-from iqoqomp import Pool
-#from multiprocessing import Pool
+from discomp import Pool
+# from multiprocessing.dummy import Pool
 
 
-os.environ['IQOQO_LOGIN_USER'] = 'efrat.tal@iqoqo.co'
-os.environ['IQOQO_LOGIN_PASSWORD'] = '12345678'
+os.environ['DISCO_LOGIN_USER'] = 'efrat@dis.co'
+os.environ['DISCO_LOGIN_PASSWORD'] = 'efrat@dis.co'
 
 p = Pool()
 collectedoutput = p.map(analyse, modelnames)
 
+
 ###########################################################
-#################IQOQOmp################################## 
+#################DISCOmp################################## 
 ##########################################################
+
