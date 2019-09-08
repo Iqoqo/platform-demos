@@ -73,8 +73,8 @@ from discomp import Pool
 # from multiprocessing.dummy import Pool
 
 
-os.environ['DISCO_LOGIN_USER'] = 'efrat@dis.co'
-os.environ['DISCO_LOGIN_PASSWORD'] = 'efrat@dis.co'
+os.environ['DISCO_LOGIN_USER'] = 'user@somthing.com'
+os.environ['DISCO_LOGIN_PASSWORD'] = 'userpassword'
 
 p = Pool()
 collectedoutput = p.map(analyse, modelnames)
