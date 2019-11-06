@@ -4,7 +4,21 @@
 ## Running the demo using discomp
 The script already has the discomp imported and configured the pool usage.
 
-In order to run the script, you need to have the [discomp](https://github.com/Iqoqo/iqoqomp) configured on your machine and then just open a command line and run the script as any python script.
+In order to run the script you should do the following:
+
+1. Create a new folder and download there the script (recommended to start with the simple script, compare_mlmethods.py) and the requirements.txt from this repository.
+
+Note that you should adjust in the script your discomp user and password.
+
+2. In that folder Install and activate python virtual env (https://packaging.python.org/guides/installing-using-pip-and-virtual-environments/)
+
+3. In that folder,  pip3 install -r requirements.txt
+
+4. python3 compare_mlmethods.py
+
+5. You can now login to your disco app and see that job with 6 tasks was created.
+
+link to [discomp](https://github.com/Iqoqo/iqoqomp) documentation.
 
 You should also have Dis.co CLI installed before running the script:
 
