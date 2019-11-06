@@ -26,10 +26,6 @@ You should also have Dis.co CLI installed before running the script:
  curl https://s3.us-west-2.amazonaws.com/disco.cli/install.sh | sh
 ```
 
-The recommended method is to run the script inside python virtual environment:
-
-https://packaging.python.org/guides/installing-using-pip-and-virtual-environments/
-
 ## The analysis
 The analysis is comparing different Machine learning methods (using the sklearn package).
 
