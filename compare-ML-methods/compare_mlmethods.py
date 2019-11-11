@@ -35,34 +35,65 @@ data_sets = {
         "size": "5GB",
     },
 }
-
-
 model_dicts = {
-    "LogReg": {"model": LogisticRegression, "params": {}},
-    "SVM": {"model": SVC, "params": {}},
-    "DecTree": {"model": DecisionTreeClassifier, "params": {}},
-    "KNN": {"model": KNeighborsClassifier, "params": {}},
-    "LinDisc": {"model": LinearDiscriminantAnalysis, "params": {}},
-    "GaussianNB": {"model": GaussianNB, "params": {}},
-    "MLP": {"model": MLPClassifier, "params": {}},
-    "GaussianPC": {"model": GaussianProcessClassifier, "params": {}},
-    "RandomForest": {"model": RandomForestClassifier, "params": {}},
     "AdaBoost": {"model": AdaBoostClassifier, "params": {}},
-    "QuadraticDisc": {"model": QuadraticDiscriminantAnalysis, "params": {}},
-    "SVClinear": {"model": SVC, "params": {"kernel": "linear", "C": 0.025}},
-    "SVCgamma": {"model": SVC, "params": {"gamma": 2, "C": 1}},
+    "DecTree": {"model": DecisionTreeClassifier, "params": {}},
+    "DecTreeDepth5": {"model": DecisionTreeClassifier, "params": {"max_depth": 5}},
+    "DecTreeDepth50": {"model": DecisionTreeClassifier, "params": {"max_depth": 50}},
+    "DecTreeDepth500": {"model": DecisionTreeClassifier, "params": {"max_depth": 500}},
+    "GaussianNB": {"model": GaussianNB, "params": {}},
+    #"GaussianPC": {"model": GaussianProcessClassifier, "params": {}},
+    #"GaussianRBF": {
+    #    "model": GaussianProcessClassifier,
+    #    "params": {"kernel": 1.0 * RBF(1.0)},
+    #},
+    "KNN": {"model": KNeighborsClassifier, "params": {}},
     "KNN3": {"model": KNeighborsClassifier, "params": {"n_neighbors": 3}},
-    "GaussianRBF": {
-        "model": GaussianProcessClassifier,
-        "params": {"kernel": 1.0 * RBF(1.0)},
-    },
-    "DecTreeDepth": {"model": DecisionTreeClassifier, "params": {"max_depth": 5}},
+    "KNN7": {"model": KNeighborsClassifier, "params": {"n_neighbors": 7}},
+    "KNN10": {"model": KNeighborsClassifier, "params": {"n_neighbors": 10}},
+    "KNN20": {"model": KNeighborsClassifier, "params": {"n_neighbors": 20}},
+    "LinDisc": {"model": LinearDiscriminantAnalysis, "params": {}},
+    "LogReg": {"model": LogisticRegression,
+               "params": {"max_iter": 1000, "solver": "lbfgs"}},
+    "MLPalpha1": {"model": MLPClassifier, "params": {"max_iter": 2000, "alpha": 1}},
+    "MLPalpha01": {"model": MLPClassifier, "params": {"max_iter": 2000, "alpha": 0.1}},
+    "MLPalpha001": {"model": MLPClassifier, "params": {"max_iter": 2000, "alpha": 0.01}},
+    "MLPSGD": {"model": MLPClassifier,
+               "params": {"max_iter": 2000, "solver": "sgd"}
+               },
+    "QuadraticDisc": {"model": QuadraticDiscriminantAnalysis, "params": {}},
+    "RandomForest": {"model": RandomForestClassifier,
+                     "params": {"n_estimators": 100}
+                     },
     "RandomForestDepth": {
         "model": RandomForestClassifier,
         "params": {"max_depth": 100, "n_estimators": 10, "max_features": 1},
     },
-    "MLPalpha": {"model": MLPClassifier, "params": {"alpha": 1}},
+    "RandomForestMaxLeaf3000": {
+        "model": RandomForestClassifier,
+        "params": {"max_depth": 100, "n_estimators": 10, "max_leaf_nodes": 3000},
+    },
+
+    "RandomForestMaxLeaf10000": {
+        "model": RandomForestClassifier,
+        "params": {"max_depth": 100, "n_estimators": 10, "max_leaf_nodes": 10000},
+    },
+
+    "RandomForestMaxLeaf30000": {
+        "model": RandomForestClassifier,
+        "params": {"max_depth": 100, "n_estimators": 10, "max_leaf_nodes": 30000},
+    },
+
+    "SVCScale": {"model": SVC, "params": {"gamma": "scale"}},
+    "SVClinear": {"model": SVC, "params": {"gamma": "scale", "kernel": "linear", "C": 0.025}},
+    "SVCsigmoidC025": {"model": SVC, "params": {"gamma": "scale", "kernel": "sigmoid", "C": 0.025}},
+    "SVCsigmoidC040": {"model": SVC, "params": {"gamma": "scale", "kernel": "sigmoid", "C": 0.040}},
+    "SVCsigmoidC060": {"model": SVC, "params": {"gamma": "scale", "kernel": "sigmoid", "C": 0.060}},
+    #"SVCgamma": {"model": SVC, "params": {"gamma": 2, "C": 1}},
+
 }
+
+
 
 
 def model_str(model_name):
@@ -89,7 +120,7 @@ def print_results(model_name, results, elapsed):
         print(f"{model_name}| Skipped")
     else:
         print(
-            f"{model_name} [{elapsed} sec]| Mean={results.mean()} STD={results.std()}"
+            f"{model_name} [{elapsed:1f} sec]| Mean={results.mean():3f} STD={results.std():3f}"
         )
 
 
@@ -100,13 +131,9 @@ def analyse(model_name, dset="s"):
         # read in the data (HEP)
 
         print(f"{model_name} {dset}")
-        print(f"--- read data set {data_sets[dset]} ---")
 
         data = pd.read_csv(data_sets[dset]["link"])
         data.dropna(inplace=True)
-        elapsed = time.time() - t
-
-        print(f"--- done reading data set elapsed time {elapsed} ---")
 
         values = data.values
         Y = values[:, 0]
@@ -117,8 +144,6 @@ def analyse(model_name, dset="s"):
             return
 
         t = time.time()
-
-        print(f"--- starting {model_name} analysis ---")
 
         k_fold_validation = model_selection.KFold(n_splits=10, random_state=random_seed)
         results = model_selection.cross_val_score(
@@ -141,8 +166,10 @@ def gen_pool_params(model_names, dset):
 
 def linear_main(options):
     collected_output = []
-    for m in options.model_names:
+    tot = len(options.model_names)
+    for i, m in enumerate(options.model_names):
         collected_output.append(analyse(m, options.data_set_size))
+        print(f"completed {i+1}/{tot} model estimations")
     return collected_output
 
 
@@ -157,7 +184,6 @@ def mp_main(options):
 
 
 def discomp_main(options):
-    import os
     from discomp import Pool
 
     p = Pool()
@@ -168,9 +194,9 @@ def discomp_main(options):
 
 
 execs = {
-    "disco": {"ex": discomp_main, "desc": "disco cloud",},
-    "linear": {"ex": linear_main, "desc": "sequentially local",},
-    "multi_process": {"ex": mp_main, "desc": "multi-process local",},
+    "disco": {"ex": discomp_main, "desc": "disco cloud"},
+    "linear": {"ex": linear_main, "desc": "sequentially local"},
+    "multi_process": {"ex": mp_main, "desc": "multi-process local"},
 }
 
 
@@ -240,6 +266,8 @@ def main():
     collected_output = ex(options)
     for model, result, elapsed in collected_output:
         print_results(model, result, elapsed)
+
+    print(f"DONE ESTIMATING {len(collected_output)} MODELS")
 
 
 if __name__ == "__main__":
