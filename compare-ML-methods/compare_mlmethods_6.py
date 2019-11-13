@@ -9,30 +9,9 @@ from sklearn.tree import DecisionTreeClassifier
 from sklearn.naive_bayes import GaussianNB
 from sklearn.discriminant_analysis import LinearDiscriminantAnalysis
 
-from sklearn.neural_network import MLPClassifier
-from sklearn.gaussian_process import GaussianProcessClassifier
-from sklearn.ensemble import RandomForestClassifier, AdaBoostClassifier
-from sklearn.discriminant_analysis import QuadraticDiscriminantAnalysis
-
 
 ### define the models pool
-modelnames = [
-    "LogReg",
-    "SVM",
-    "DecTree",
-    "KNN",
-    "LinDisc",
-    "GaussianNB",
-    "MLP",
-    "GaussianPC",
-    "RandomForest",
-    "AdaBoost",
-    "QuadraticDisc",
-    "SVClinear",
-    "SVCgamma",
-]
-
-# modelnames = ["SVM"]
+modelnames = ["LogReg", "SVM", "DecTree", "KNN", "GaussianNB"]
 
 random_seed = 12
 
@@ -41,7 +20,7 @@ def analyse(model_name):
     try:
         ### read in the data (HEP)
         data = pd.read_csv(
-            "https://s3-us-west-2.amazonaws.com/iqoqo.temp/demo/all_train_10000.csv"
+            "https://s3-us-west-2.amazonaws.com/iqoqo.temp/demo/all_train_30000.csv"
         )
         data.head()
         data_to_use = data
@@ -65,20 +44,6 @@ def analyse(model_name):
             model.append(LinearDiscriminantAnalysis())
         elif model_name == "GaussianNB":
             model.append(GaussianNB())
-        elif model_name == "MLP":
-            model.append(MLPClassifier())
-        elif model_name == "GaussianPC":
-            model.append(GaussianProcessClassifier())
-        elif model_name == "RandomForest":
-            model.append(RandomForestClassifier())
-        elif model_name == "AdaBoost":
-            model.append(AdaBoostClassifier())
-        elif model_name == "QuadraticDisc":
-            model.append(QuadraticDiscriminantAnalysis())
-        elif model_name == "SVClinear":
-            model.append(SVC(kernel="linear", C=0.025))
-        elif model_name == "SVCgamma":
-            model.append(SVC(gamma=2, C=1))
         else:
             print("Model name not found: " + model_name)
             quit()
@@ -94,6 +59,7 @@ def analyse(model_name):
         )
         print(output_message)
         print("--- done " + model_name + " analysis ---")
+        print(model_name + ":" + str(len(results)))
         return model_name, results
     except:
         return model_name, []
@@ -107,7 +73,6 @@ def linear(imodel=-1):
             name, result = analyse(modelname)
             results.append(result)
             names.append(name)
-        plotsummary(names, results)
     else:
         analyse(modelnames[imodel])
 
@@ -125,8 +90,15 @@ from discomp import Pool
 
 # from multiprocessing.dummy import Pool
 
+
+def foo(model_name):
+    return model_name
+
+
 p = Pool()
 collectedoutput = p.map(analyse, modelnames)
+# collectedoutput = p.map(foo, modelnames)
+
 print(collectedoutput)
 
 ###########################################################
