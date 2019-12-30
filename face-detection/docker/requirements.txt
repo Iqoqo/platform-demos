@@ -1,0 +1,4 @@
+disco
+jupyter
+opencv-python
+ffmpeg-python
