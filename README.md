@@ -1,6 +1,6 @@
 # Platform-demos
 
-Usage demos for the IQOQO platform
+Usage demos for the dis.co platform
 
 ## Gender in news
 
