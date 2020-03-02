@@ -104,7 +104,7 @@ def gender_check(pandas_content, publication_name):
     male_percent={word:(word_freq['male'].get(word,0) / word_counter['male']) 
                   / (word_freq['female'].get(word,0) / word_counter['female']+word_freq['male'].get(word,0)/word_counter['male']) for word in common_words}
 
-    filename = publication_name+"_results_summary" 
+    filename = 'run-result/'+publication_name+"_results_summary"
     print('%.1f%% gendered' % (100*(sentence_counter['male']+sentence_counter['female'])/
                                (sentence_counter['male']+sentence_counter['female']+sentence_counter['both']+sentence_counter['none']))+
                                 '\n %s sentences about men.' % sentence_counter['male']+'\n %s sentences about women.' % sentence_counter['female']+
@@ -138,7 +138,7 @@ def gender_check(pandas_content, publication_name):
             ratio=100
         print('%.1f\t%01d\t%01d\t%s' % (ratio,word_freq['male'].get(word,0),word_freq['female'].get(word,0),word))
 
-    outfile_name='gender.tsv'
+    outfile_name='run-result/gender.tsv'
     tsv_outfile=open(outfile_name,'w')
     header='percent_male\tmale_count\tfemalecount\tword\n'
     tsv_outfile.write(header)
@@ -167,26 +167,47 @@ def gender_check(pandas_content, publication_name):
 ## 5.1 write to file publisher stats (name, #ofpublications) 
 ## 5.2 send content to "gender" (groupby param)
 
-if len(sys.argv) == 2:
+if len(sys.argv) >= 2:
     publication_data = sys.argv[1]
+    assert isinstance(publication_data, str)
 else:
-    sys.exit('Error! should have parameter')
+    sys.exit(f'Error! should have parameter. \nGot: {sys.argv!s}')
 
+# ### Input files
+# print("\nFiles in my local directory: ")
+# for f in os.listdir('.'):
+#     print(f"\t{f}")
 
-df = pd.read_csv(publication_data, compression='zip')
+# print(f"Input file name I got passed: {publication_data}")
+if not os.path.exists(publication_data):
+    # print(f"zipped file not found, trying without zip")
+    if os.path.exists(publication_data.rstrip('.zip')):
+        publication_data = publication_data.rstrip('.zip')
+    else:
+        sys.exit(f"Unable to find file '{publication_data}'")
+
+kwargs = {}
+if publication_data.endswith('.zip'):
+    kwargs["compression"] = 'zip'
+df = pd.read_csv(publication_data, **kwargs)
 
 g = df.groupby("publication")
 
 publication_name = g.groups.keys()
 
+if not os.path.exists('run-result'):
+    os.mkdir('run-result')
+
+
 for name in publication_name:
     print(name)
     dirname = name.replace(' ', '')
+
     
     content = g.get_group(name)["content"].tolist()
     num_publications = len(content)
     #ftxt = open(path+"singles/"+name+"_publication_detailes"+".txt","w+")
-    ftxt = open(name+"_publication_detailes"+".txt","w+")
+    ftxt = open('run-result/'+name+"_publication_detailes"+".txt","w+")
     ftxt.write("number of publications: "+str(num_publications))
     ftxt.close()
 
