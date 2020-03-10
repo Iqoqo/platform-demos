@@ -2,10 +2,13 @@
 
 
 ## Running the demo from iqoqo app
+### Web UI
  1. Upload the script gender_in_news.py
  2. Upload the dataset files as 'Input Files'. You can get them from iqoqo storage [here](https://s3-us-west-2.amazonaws.com/iqoqo.demo/articles1.csv.zip), [here](https://s3-us-west-2.amazonaws.com/iqoqo.demo/articles2.csv.zip) and [here](https://s3-us-west-2.amazonaws.com/iqoqo.demo/articles3.csv.zip) or download from the [Kaggle site](https://www.kaggle.com/snapcrack/all-the-news)
- 3. For our case you have to to upload the file english.pickle as a 'Constant File'.
-The only modules that are needed is nltk, which is a powerful suite for text processing and analysis. For this analysis, we are only using the NLTK function that splits text into sentences. 
+ 3. For our case you have to to upload the file english.pickle and requirements.txt as a 'Constant File'.
+### CLI
+ 1. Download the input files from the Web UI instructions into an input/ folder (do not unzip)
+ 1. disco job create --name GenderInNewsDemo --constants "english.pickle,requirements.txt" --script gender_in_news.py --input "input/articles*" --run
 
 ## Preparing the data for the analysis
 The data structure at the dataset from Kaggale is as follow:
